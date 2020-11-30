@@ -38,10 +38,22 @@ namespace CasseBriqueGame
             texture.SetData<Color>(colorData);
         }
 
-        private void UpdateScreenSizeDatas(int newSizeX, int newSizeY)
+        public void UpdateScreenSizeDatas(int newSizeX, int newSizeY)
         {
             screenSizeX = newSizeX;
             screenSizeY = newSizeY;
+        }
+
+        public void UpdateBar(float mouseX, Ball ball)
+        {
+            position.X = mouseX - sizeX / 2;
+            if (position.X < 0) position.X = 0;
+            if (position.X + sizeX > screenSizeX) position.X = screenSizeX - sizeX;
+
+            if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + ball.speedY + 0.5f && ball.position.X > position.X && ball.position.X + ball.sizeX < position.X + sizeX)
+            {
+                ball.Collision(this, Ball.CollisionSector.UpAndDown);
+            }
         }
     }
 }

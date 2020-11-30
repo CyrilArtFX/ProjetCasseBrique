@@ -13,13 +13,16 @@ namespace CasseBriqueGame
         private int screenSizeX;
         private int screenSizeY;
 
-        public Bar bar1;
+        private float mousePositionX;
+
+        public Bar bar;
         public Ball ball;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
 
         }
 
@@ -29,8 +32,8 @@ namespace CasseBriqueGame
             screenSizeX = graphicsDevice.Viewport.Width;
             screenSizeY = graphicsDevice.Viewport.Height;
 
-            bar1 = new Bar(200, 20, new Vector2(50, 50), graphicsDevice, Color.White, screenSizeX, screenSizeY);
-            ball = new Ball(20, 20, new Vector2(200, 300), 5, 2.5f, graphicsDevice, Color.White, screenSizeX, screenSizeY);
+            bar = new Bar(200, 20, new Vector2(screenSizeX/2 - 100, 6 * screenSizeY/7), graphicsDevice, Color.White, screenSizeX, screenSizeY);
+            ball = new Ball(20, 20, new Vector2(screenSizeX/2 - 10, screenSizeY/2 - 10), 1, 1, graphicsDevice, Color.White, screenSizeX, screenSizeY);
 
             base.Initialize();
         }
@@ -44,12 +47,18 @@ namespace CasseBriqueGame
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if(IsActive)
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            ball.UpdateBall();
+                mousePositionX = Mouse.GetState().X;
 
-            base.Update(gameTime);
+                ball.UpdateBall();
+                bar.UpdateBar(mousePositionX, ball);
+
+                base.Update(gameTime);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -57,7 +66,7 @@ namespace CasseBriqueGame
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(bar1.texture, bar1.position, bar1.color);
+            _spriteBatch.Draw(bar.texture, bar.position, bar.color);
             _spriteBatch.Draw(ball.texture, ball.position, ball.color);
 
             _spriteBatch.End();
