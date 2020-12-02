@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CasseBriqueGame
 {
@@ -60,8 +57,12 @@ namespace CasseBriqueGame
             position.X += speedX;
             position.Y += speedY;
 
+            if (position.X <= 0) position.X = 0;
+            if (position.X + sizeX >= screenSizeX) position.X = screenSizeX - sizeX;
+            if (position.Y <= 0) position.Y = 0;
+            if (position.Y + sizeY >= screenSizeY) position.Y = screenSizeY - sizeY;
             if (position.X <= 0 || position.X + sizeX >= screenSizeX) speedX = -speedX;
-            if (position.Y <= 0 || position.Y + sizeY >= screenSizeY) speedY = -speedY; 
+            if (position.Y <= 0 || position.Y + sizeY >= screenSizeY) speedY = -speedY;
         }
 
         //For collisionZone : this is a int between -100 (up or left) and 100 (down or right) which contains the zone on the col where the ball bounce 
@@ -70,15 +71,36 @@ namespace CasseBriqueGame
         {
             if(sector == CollisionSector.UpAndDown)
             {
+                position.Y += -speedY;
                 speedY = -speedY;
                 int collisionZone = (int)((((col.sizeX - ((position.X + sizeX / 2) - col.position.X)) / col.sizeX) - 0.5) * -200);
                 speedX = collisionZone / 20;
             }
+            if(sector == CollisionSector.LeftAndRight)
+            {
+                position.X += -speedX;
+                speedX = -speedX;
+                int collisionZone = (int)((((col.sizeY - ((position.Y + sizeY / 2) - col.position.Y)) / col.sizeY) - 0.5) * -200);
+                speedY = collisionZone / 20;
+            }
         }
 
-        public void Collision(int col)
+        public void Collision(Brick col, CollisionSector sector)
         {
-
+            if (sector == CollisionSector.UpAndDown)
+            {
+                position.Y += -speedY;
+                speedY = -speedY;
+                int collisionZone = (int)((((col.sizeX - ((position.X + sizeX / 2) - col.position.X)) / col.sizeX) - 0.5) * -200);
+                speedX = collisionZone / 20;
+            }
+            if (sector == CollisionSector.LeftAndRight)
+            {
+                position.X += -speedX;
+                speedX = -speedX;
+                int collisionZone = (int)((((col.sizeY - ((position.Y + sizeY / 2) - col.position.Y)) / col.sizeY) - 0.5) * -200);
+                speedY = collisionZone / 20;
+            }
         }
     }
 }

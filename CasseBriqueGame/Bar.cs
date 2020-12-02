@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CasseBriqueGame
 {
@@ -50,7 +47,7 @@ namespace CasseBriqueGame
             if (position.X < 0) position.X = 0;
             if (position.X + sizeX > screenSizeX) position.X = screenSizeX - sizeX;
 
-            if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + ball.speedY + 0.5f && ball.position.X > position.X && ball.position.X + ball.sizeX < position.X + sizeX)
+            if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + ball.speedY + 0.5f && ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX)
             {
                 ball.Collision(this, Ball.CollisionSector.UpAndDown);
             }
