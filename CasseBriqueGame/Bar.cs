@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CasseBriqueGame
 {
@@ -14,14 +15,17 @@ namespace CasseBriqueGame
         private int screenSizeX;
         private int screenSizeY;
 
+        private SoundEffect barSound;
 
-        public Bar(int sizeX, int sizeY, Vector2 position, GraphicsDevice graphicsDevice, Color color, int screenSizeX, int screenSizeY)
+
+        public Bar(int sizeX, int sizeY, Vector2 position, GraphicsDevice graphicsDevice, Color color, int screenSizeX, int screenSizeY, SoundEffect barSound)
         {
             this.sizeX = sizeX;
             this.sizeY = sizeY;
             this.position = position;
             texture = new Texture2D(graphicsDevice, sizeX, sizeY);
             this.color = color;
+            this.barSound = barSound;
 
             SetColorData();
             UpdateScreenSizeDatas(screenSizeX, screenSizeY);
@@ -49,6 +53,7 @@ namespace CasseBriqueGame
 
             if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + ball.speedY + 0.5f && ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX)
             {
+                barSound.Play();
                 ball.Collision(this, Ball.CollisionSector.UpAndDown);
             }
         }

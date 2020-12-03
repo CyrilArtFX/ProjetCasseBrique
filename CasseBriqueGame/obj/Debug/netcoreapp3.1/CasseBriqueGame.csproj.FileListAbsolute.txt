@@ -34,3 +34,11 @@ C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\obj\Debug\netco
 C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\obj\Debug\netcoreapp3.1\CasseBriqueGame.dll
 C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\obj\Debug\netcoreapp3.1\CasseBriqueGame.pdb
 C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\obj\Debug\netcoreapp3.1\CasseBriqueGame.genruntimeconfig.cache
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\LargeFont.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\SmallFont.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Bar.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Brick.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Defeat.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Menu.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Sides.xnb
+C:\Users\cyril\OneDrive\Bureau\ProjetCasseBrique\CasseBriqueGame\bin\Debug\netcoreapp3.1\Content\Sounds\Win.xnb

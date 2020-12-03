@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CasseBriqueGame
 {
@@ -16,6 +17,8 @@ namespace CasseBriqueGame
         private int screenSizeX;
         private int screenSizeY;
 
+        private SoundEffect sidesSound;
+
         public enum CollisionSector
         {
             UpAndDown,
@@ -23,7 +26,7 @@ namespace CasseBriqueGame
         }
 
 
-        public Ball(int sizeX, int sizeY, Vector2 position, float baseSpeedX, float baseSpeedY, GraphicsDevice graphicsDevice, Color color, int screenSizeX, int screenSizeY)
+        public Ball(int sizeX, int sizeY, Vector2 position, float baseSpeedX, float baseSpeedY, GraphicsDevice graphicsDevice, Color color, int screenSizeX, int screenSizeY, SoundEffect sidesSound)
         {
             this.sizeX = sizeX;
             this.sizeY = sizeY;
@@ -33,6 +36,7 @@ namespace CasseBriqueGame
 
             texture = new Texture2D(graphicsDevice, sizeX, sizeY);
             this.color = color;
+            this.sidesSound = sidesSound;
 
             SetColorData();
             UpdateScreenSizeDatas(screenSizeX, screenSizeY);
@@ -60,8 +64,12 @@ namespace CasseBriqueGame
             if (position.X <= 0) position.X = 0;
             if (position.X + sizeX >= screenSizeX) position.X = screenSizeX - sizeX;
             if (position.Y <= 0) position.Y = 0;
-            if (position.Y + sizeY >= screenSizeY) position.Y = screenSizeY - sizeY;
-            if (position.X <= 0 || position.X + sizeX >= screenSizeX) speedX = -speedX;
+            if (position.Y + sizeY >= screenSizeY) position.Y = screenSizeY * 3;
+            if (position.X <= 0 || position.X + sizeX >= screenSizeX)
+            {
+                sidesSound.Play();
+                speedX = -speedX;
+            }
             if (position.Y <= 0 || position.Y + sizeY >= screenSizeY) speedY = -speedY;
         }
 
@@ -91,15 +99,11 @@ namespace CasseBriqueGame
             {
                 position.Y += -speedY;
                 speedY = -speedY;
-                int collisionZone = (int)((((col.sizeX - ((position.X + sizeX / 2) - col.position.X)) / col.sizeX) - 0.5) * -200);
-                speedX = collisionZone / 20;
             }
             if (sector == CollisionSector.LeftAndRight)
             {
                 position.X += -speedX;
                 speedX = -speedX;
-                int collisionZone = (int)((((col.sizeY - ((position.Y + sizeY / 2) - col.position.Y)) / col.sizeY) - 0.5) * -200);
-                speedY = collisionZone / 20;
             }
         }
     }

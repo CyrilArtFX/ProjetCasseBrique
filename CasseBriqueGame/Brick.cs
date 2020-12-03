@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CasseBriqueGame
 {
@@ -13,13 +14,17 @@ namespace CasseBriqueGame
 
         public int life;
 
+        private SoundEffect brickSound;
 
-        public Brick(int sizeX, int sizeY, Vector2 position, int life, GraphicsDevice graphicsDevice)
+
+        public Brick(int sizeX, int sizeY, Vector2 position, int life, GraphicsDevice graphicsDevice, SoundEffect brickSound)
         {
             this.sizeX = sizeX;
             this.sizeY = sizeY;
             this.position = position;
             this.life = life;
+
+            this.brickSound = brickSound;
 
             texture = new Texture2D(graphicsDevice, sizeX, sizeY);
             SetColorData(SetColorUsingLife());
@@ -28,7 +33,7 @@ namespace CasseBriqueGame
         private Color SetColorUsingLife()
         {
             if (life >= 5) return Color.DarkRed;
-            else if (life == 4) return Color.OrangeRed;
+            else if (life == 4) return Color.Crimson;
             else if (life == 3) return Color.Orange;
             else if (life == 2) return Color.Yellow;
             else if (life == 1) return Color.YellowGreen;
@@ -50,6 +55,7 @@ namespace CasseBriqueGame
             {
                 if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + sizeY) //The ball is at the same position at the brick
                 {
+                    brickSound.Play();
                     ball.Collision(this, Ball.CollisionSector.UpAndDown);
                     life--;
                     SetColorData(SetColorUsingLife());
@@ -61,6 +67,7 @@ namespace CasseBriqueGame
             {
                 if(ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX) //The ball is at the same position at the brick
                 {
+                    brickSound.Play();
                     ball.Collision(this, Ball.CollisionSector.LeftAndRight);
                     life--;
                     SetColorData(SetColorUsingLife());

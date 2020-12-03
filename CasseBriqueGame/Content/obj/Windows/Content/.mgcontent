@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/LargeFont.spritefont</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/SmallFont.spritefont</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Bar.wav</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Brick.wav</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Defeat.wav</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Menu.wav</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Sides.wav</File>
+    <File>C:/Users/cyril/OneDrive/Bureau/ProjetCasseBrique/CasseBriqueGame/Content/Sounds/Win.wav</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
