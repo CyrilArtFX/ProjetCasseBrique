@@ -63,7 +63,11 @@ namespace CasseBriqueGame
 
             if (position.X <= 0) position.X = 0;
             if (position.X + sizeX >= screenSizeX) position.X = screenSizeX - sizeX;
-            if (position.Y <= 0) position.Y = 0;
+            if (position.Y <= 0)
+            {
+                sidesSound.Play();
+                position.Y = 0;
+            }
             if (position.Y + sizeY >= screenSizeY) position.Y = screenSizeY * 3;
             if (position.X <= 0 || position.X + sizeX >= screenSizeX)
             {
@@ -79,7 +83,7 @@ namespace CasseBriqueGame
         {
             if(sector == CollisionSector.UpAndDown)
             {
-                position.Y += -speedY;
+                position.Y += -5;
                 speedY = -speedY;
                 int collisionZone = (int)((((col.sizeX - ((position.X + sizeX / 2) - col.position.X)) / col.sizeX) - 0.5) * -200);
                 speedX = collisionZone / 20;

@@ -16,6 +16,8 @@ namespace CasseBriqueGame
 
         private SoundEffect brickSound;
 
+        private bool isBallInHeight = false;
+
 
         public Brick(int sizeX, int sizeY, Vector2 position, int life, GraphicsDevice graphicsDevice, SoundEffect brickSound)
         {
@@ -53,7 +55,7 @@ namespace CasseBriqueGame
         {
             if (ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX) //The ball is at the same positionX at the brick
             {
-                if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + sizeY) //The ball is at the same position at the brick
+                if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + sizeY && !isBallInHeight) //The ball is at the same position at the brick
                 {
                     brickSound.Play();
                     ball.Collision(this, Ball.CollisionSector.UpAndDown);
@@ -63,9 +65,10 @@ namespace CasseBriqueGame
                     //the brick by the Up or the Down side
                 }
             }
-            else if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + sizeY) //The ball is at the same height at the brick
+            if (ball.position.Y + ball.sizeY >= position.Y && ball.position.Y < position.Y + sizeY) //The ball is at the same height at the brick
             {
-                if(ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX) //The ball is at the same position at the brick
+                isBallInHeight = true;
+                if (ball.position.X + ball.sizeX > position.X && ball.position.X < position.X + sizeX) //The ball is at the same position at the brick
                 {
                     brickSound.Play();
                     ball.Collision(this, Ball.CollisionSector.LeftAndRight);
@@ -75,6 +78,7 @@ namespace CasseBriqueGame
                     //the brick by the Left or the Right side
                 }
             }
+            else isBallInHeight = false;
         }
 
     }
